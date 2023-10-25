@@ -40,6 +40,12 @@ RUN if grep -qr "lsio" /etc; then /ha_lsio.sh "$CONFIGLOCATION"; fi && rm /ha_ls
 # Add rootfs
 COPY rootfs/ /
 
+# Copy Python requirements file
+COPY requirements.txt /tmp/requirements.txt
+
+# Copy in extensions list
+COPY vscode.extensions /root/vscode.extensions
+
 # Modules
 ARG MODULES="00-banner.sh 01-custom_script.sh 00-local_mounts.sh 00-smb_mounts.sh"
 

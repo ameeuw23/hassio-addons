@@ -60,23 +60,35 @@
   ],
   "image": "ghcr.io/alexbelgium/code_server-{arch}",
   "init": false,
+  "startup": "services",
+  "services": [
+    "mysql:want",
+    "mqtt:want"
+  ],
   "map": [
     "backup:rw",
+    "addons:rw",
     "config:rw",
     "share:rw",
     "media:rw",
-    "ssl"
+    "ssl:rw"
   ],
   "name": "Code-server (VScode)",
   "options": {
     "PGID": 0,
-    "PUID": 0
+    "PUID": 0,
+    "password": "",
+    "authorized_keys": [],
+    "packages": [],
+    "init_commands": []
   },
   "ports": {
-    "8443/tcp": 8443
+    "8443/tcp": 8443,
+    "22/tcp": 2222
   },
   "ports_description": {
-    "8443/tcp": "WebUI"
+    "8443/tcp": "WebUI",
+    "22/tcp": "VSCode Remote SSH server port"
   },
   "privileged": [
     "SYS_ADMIN",
