@@ -54,7 +54,7 @@ ADD --chmod=744 "https://raw.githubusercontent.com/alexbelgium/hassio-addons/mas
 RUN /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
 
 # Manual apps
-ENV PACKAGES="jq zsh wget curl openssh-client openssh-server mosquitto-clients"
+ENV PACKAGES="jq zsh wget curl openssh-client openssh-server mosquitto-clients git"
 
 # Automatic apps & bashio
 ADD --chmod=744 "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/.templates/ha_autoapps.sh" "/ha_autoapps.sh"
@@ -66,13 +66,13 @@ RUN curl -L -s -o /usr/bin/ha \
     && chmod a+x /usr/bin/ha \
     \
     && git clone --branch master --single-branch --depth 1 \
-        "git://github.com/robbyrussell/oh-my-zsh.git" ~/.oh-my-zsh \
+        "https://github.com/robbyrussell/oh-my-zsh.git" ~/.oh-my-zsh \
     \
     && git clone --branch master --single-branch --depth 1 \
-        "git://github.com/zsh-users/zsh-autosuggestions" \
+        "https://github.com/zsh-users/zsh-autosuggestions" \
         ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions \
     && git clone --branch master --single-branch --depth 1 \
-        "git://github.com/zsh-users/zsh-syntax-highlighting.git" \
+        "https:///github.com/zsh-users/zsh-syntax-highlighting.git" \
         ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting \
     \
     && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd
