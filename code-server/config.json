@@ -77,7 +77,6 @@
   "options": {
     "PGID": 0,
     "PUID": 0,
-    "directory": "",
     "password": "",
     "authorized_keys": [],
     "packages": [],
