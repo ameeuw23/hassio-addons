@@ -54,7 +54,7 @@ ADD --chmod=744 "https://raw.githubusercontent.com/alexbelgium/hassio-addons/mas
 RUN /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
 
 # Manual apps
-ENV PACKAGES="jq openssh-client openssh-server mosquitto-clients"
+ENV PACKAGES="jq zsh wget curl openssh-client openssh-server mosquitto-clients"
 
 # Automatic apps & bashio
 ADD --chmod=744 "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/.templates/ha_autoapps.sh" "/ha_autoapps.sh"
