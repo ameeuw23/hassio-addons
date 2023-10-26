@@ -60,7 +60,6 @@ ENV PACKAGES="jq zsh wget curl openssh-client openssh-server mosquitto-clients"
 ADD --chmod=744 "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/.templates/ha_autoapps.sh" "/ha_autoapps.sh"
 RUN /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.sh
 
-
 ## RUN code
 RUN curl -L -s -o /usr/bin/ha \
         "https://github.com/home-assistant/cli/releases/download/4.29.0/ha_${BUILD_ARCH}" \
