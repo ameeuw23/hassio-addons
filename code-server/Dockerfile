@@ -60,6 +60,24 @@ ENV PACKAGES="jq openssh-client openssh-server mosquitto-clients"
 ADD --chmod=744 "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/.templates/ha_autoapps.sh" "/ha_autoapps.sh"
 RUN /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.sh
 
+
+## RUN code
+RUN curl -L -s -o /usr/bin/ha \
+        "https://github.com/home-assistant/cli/releases/download/4.29.0/ha_${BUILD_ARCH}" \
+    && chmod a+x /usr/bin/ha \
+    \
+    && git clone --branch master --single-branch --depth 1 \
+        "git://github.com/robbyrussell/oh-my-zsh.git" ~/.oh-my-zsh \
+    \
+    && git clone --branch master --single-branch --depth 1 \
+        "git://github.com/zsh-users/zsh-autosuggestions" \
+        ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions \
+    && git clone --branch master --single-branch --depth 1 \
+        "git://github.com/zsh-users/zsh-syntax-highlighting.git" \
+        ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting \
+    \
+    && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd
+
 ################
 # 4 Entrypoint #
 ################
